@@ -1411,7 +1411,7 @@ intern.Meta = function(instance, opts, origmsg, origreply) {
   this.version = '0.1.0'
 
   this.gate = !!origmsg.gate$
-  this.fatal = !!origmsg.fatal$
+  this.fatal = false
   this.local = !!origmsg.local$
 
   this.closing = !!origmsg.closing$ || (origmeta && origmeta.closing)
