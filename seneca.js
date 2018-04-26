@@ -726,23 +726,12 @@ function make_seneca(initial_options) {
           .replace(/.*\/seneca\/lib\/.*\.js:.*\n/g, '')
     }
 
-<<<<<<< HEAD
     if (msg.caller$ || msg.default$ || msg.gate$) {
-=======
-    if (msg.caller$ || msg.default$ || !msg.gate$) {
->>>>>>> 6192a6deeef947d8e2c21352826da5b2350369f0
       do_act(self, msg, reply)
       return self
     }
 
     if (!root$.find(msg) && !msg.default$ && !msg.gate$) {
-<<<<<<< HEAD
-=======
-      console.log("\n\n\n\n\n")
-      console.log('DEU RUIM', msg)
-      console.log("\n\n\n\n\n")
-
->>>>>>> 6192a6deeef947d8e2c21352826da5b2350369f0
       return reply(
         Common.error('act_not_found', { args: Common.patternWithout(msg, 'values') })
       )
