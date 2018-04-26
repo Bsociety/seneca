@@ -105,19 +105,21 @@ describe('actions', function() {
     })
   })
 
-  /*
-  it('make_error', function(fin) {
+  
+  it('act_not_found', function(fin) {
     var si = Seneca({ log: 'silent' })
     si.act(
-      'role:seneca,make:error',
-      { code: 'foo', err: new Error('bar') },
+      'role:meuovo,vai:darerror',
+      { },
       function(err, out) {
+        var regex = /seneca: No matching action pattern found for/
+
+        expect(err).not.equal(null)
         expect(out).equal(null)
-        expect(err.message.match(/bar/)).exists()
-        expect(err.code).equal('act_execute')
+        expect(regex.test(err.message)).equal(true)
+        expect(err.code).equal('act_not_found')
         fin()
       }
     )
   })
-  */
 })
