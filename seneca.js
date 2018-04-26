@@ -726,6 +726,21 @@ function make_seneca(initial_options) {
           .replace(/.*\/seneca\/lib\/.*\.js:.*\n/g, '')
     }
 
+    if (msg.caller$ || msg.default$ || !msg.gate$) {
+      do_act(self, msg, reply)
+      return self
+    }
+
+    if (!root$.find(msg) && !msg.default$ && !msg.gate$) {
+      console.log("\n\n\n\n\n")
+      console.log('DEU RUIM', msg)
+      console.log("\n\n\n\n\n")
+
+      return reply(
+        Common.error('act_not_found', { args: Common.patternWithout(msg, 'values') })
+      )
+    }
+
     do_act(self, msg, reply)
     return self
   }
@@ -1411,7 +1426,7 @@ intern.Meta = function(instance, opts, origmsg, origreply) {
   this.version = '0.1.0'
 
   this.gate = !!origmsg.gate$
-  this.fatal = false
+  this.fatal = !!origmsg.fatal$
   this.local = !!origmsg.local$
 
   this.closing = !!origmsg.closing$ || (origmeta && origmeta.closing)
